@@ -1,4 +1,4 @@
-package com.daimler.fuso;
+package com.arjun;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,20 +7,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class ListCubes {
+public class ListCubes2 {
 	public static void main(String[] args) {
 
 		try {
 
-			//URL url = new URL("https://dfldevhbase01-kap.apps.azurehdinsight.net:443/kylin/api/cubes");
-			URL url = new URL("https://<hostname>:443/kylin/api/cubes/kylin_sales_cube");
-			
+			URL url = new URL("http://<hostname>:443/kylin/api/query");
 			URLConnection uc = url.openConnection();
+			
 			String userpass = "XXXX" + ":" + "XXXX";
 			String basicAuth = "Basic " + javax.xml.bind.DatatypeConverter.printBase64Binary(userpass.getBytes());
 			uc.setRequestProperty("Authorization", basicAuth);
+			
 			uc.setConnectTimeout(7000);
 
+			
+			
 			System.out.println("Printing Data");
 			BufferedReader br = new BufferedReader(new InputStreamReader((uc.getInputStream())));
 			String output;
